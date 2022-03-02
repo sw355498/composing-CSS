@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>制服地圖</title>
+    <!--link css-normalize -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        :root{
+            --principalColor:#18b8c7;
+            --secondaryColor:#1f8597;
+        }
+        .list-unstyle{
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .d-flex{
+            display: flex;
+        }
+        .d-none{
+            display: none;
+        }
+        .d-block{
+            display: block;
+        }
+        body{
+            margin: 0px;
+            padding: 0px;
+            background: url("image/bg.jpg");
+        }
+        .header-bg{
+            height: 225px;
+            background: url("image/header_l.jpg") bottom left repeat-x;
+            background-color: var(--principalColor);
+            position: relative;
+        }
+        .header-logo{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        .header-logo img{
+            height: 40px;
+        }
+        .header-title{
+            width: 500px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .header-title img{
+            max-width: 100%;
+            padding-top: 60px;   
+        }
+        .header-menu{
+            width: 600px;
+            margin: 25px auto 0px;
+        }
+        .header-menu ul{
+            display: flex;
+            justify-content: space-between;
+        }
+        .header-menu a{
+            padding: 8px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .header-menu a:hover, .header-menu ul li.active a{
+            border-radius: 30px;
+            background: yellow;
+        }
+        @media screen AND (max-width:768px) {
+            .header-title img{
+                padding-top: 90px;
+            }
+
+            .hamburgerMenu label{
+                display: block;
+                position: absolute;
+                right: 5%;
+                top: 5%;
+            }
+            .hamburgerMenu-icon{
+                display: inline-block;
+                width: 36px;
+                height: 36px;
+                background: url("image/m_menu.png") no-repeat;
+                background-color: rgba(88, 86, 86, .5);
+                border-radius: 50%;
+            }
+            .hamburgerMenu-line{
+                display: none;
+                position: absolute;
+                top:calc(5% + 36px);
+                right:0px;
+            }
+            #burger:checked + .hamburgerMenu-line{
+                display: block;
+            }
+            .hamburgerMenu-line a{
+                display: block;
+                width: 100vw;
+                color: #fff;
+                background: rgb(150, 212, 233);
+                border-bottom: 1px solid #ffd518; 
+                text-align: center;
+                text-decoration: none;
+                padding: 10px 20px;
+            }
+        }
+        .wrapper{
+            max-width: 960px;
+            margin: 50px auto 0;
+            padding: 0px 20px;
+        }
+        .publicity{
+            text-align: center;
+        }
+        .publicity img{
+            width: 100%;
+        }
+        .publicity-text{
+            color: #555;
+            background: url("image/hat.png") 25% 10% no-repeat;
+        }
+        .main-block{
+            margin: 50px 0px 80px;
+            background: #fff;
+            color: #888;
+            border: 3px solid var(--secondaryColor);
+            border-radius: 20px;
+            position: relative;
+        }
+        .main-title{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--secondaryColor);
+            color: #fff;
+            padding: 20px;
+            font-size: 20px;
+            position: absolute;
+            left: -40px;
+            top: -50px;
+        }
+        .main-content{
+            padding: 30px;
+        }
+        .main-content li{
+            line-height: 2em;
+        }
+        .main-block strong{
+            color: var(--secondaryColor);
+        }
+        .activityTime-img{
+            position: absolute;
+            right: 10px;
+            bottom: 0px;
+        }
+        .illustrate{
+            position: relative;
+        }
+        .illustrate-img{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            margin-left: -8%;
+        }
+        .award{
+            padding-bottom: 200px;
+        }
+        .precautions li{
+            margin: 10px 0px;
+            color: var(--secondaryColor);
+        }
+        .precautions li span{
+            padding-left: 1em;
+            color: black;
+        }
+        @media screen AND (max-width:768px){
+            .wrapper{
+                margin: 0 auto;
+            }
+            strong{
+                display: block;
+            }
+            .publicity-text{
+                background: none;
+            }
+            .main-block{
+                margin: 60px 0px 50px;
+            }
+            .main-title{
+                left: calc(50% - 40px);
+            }
+            .main-block img{
+                width: 100%;
+            }
+            .precautions li{
+                text-indent: 0;
+            }
+        }
+        footer{
+            background: black;
+            text-align: center;
+        }
+        .footer-unit{
+            justify-content: center;
+            padding: 20px 0px;
+            
+        }
+        .footer-text{
+            color:#fff; 
+            width:50px; 
+            height:50px; 
+            background:#ccc;
+            border-radius: 50%; 
+            padding: 7px;
+            margin: 0px;
+        }
+        footer img{
+            height: 50px;
+        }
+        footer li{
+            margin: 0 5px;
+        }
+        .copy{
+            color: #ccc;
+            border-top: 1px solid #ccc;
+            padding: 10px 0px;
+        }
+        @media screen AND (max-width:768px){
+            .footer-unit{
+                width: 100%;
+                padding: 0px;
+            }
+            footer li{
+                margin: 0px;
+            }
+            .footer-text{
+                width: 100%;
+                clear: both;
+                border-radius: 0px;
+                margin: 0px;
+                font-size: 30px;
+            }
+            .float-l{
+                width: 50%;
+                float: left;
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+            .float-r{
+                width: 50%;
+                float: right;
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+            .copy{
+                clear: both;
+            }
+        }
+        /* 通用CSS */
+        @media screen AND (max-width:768px){
+            .d-none-m{
+                display: none;
+            }
+            .d-block-m{
+                display: block;
+            }
+            .col1{
+                column-count: 1;
+            }
+            .col2{
+                column-count: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-bg">
+        <div class="header-logo">
+            <a href="#">
+                <img src="image/logo_top.png" alt="三立新聞網*制服地圖">
+            </a>
+        </div>
+        <div class="header-title">
+            <img src="image/title.png" alt="2016畢業季台灣高校制服大賞">
+        </div>
+        <nav class="header-menu d-none-m">
+            <ul class="list-unstyle">
+                <li class="active"><a href="#">活動辦法</a></li>
+                <li><a href="#">全台海選</a></li>
+                <li><a href="#">TOP12決賽</a></li>
+                <li><a href="#">制服辣秘辛</a></li>
+            </ul>
+        </nav>
+        <nav class="d-none d-block-m hamburgerMenu">
+            <label for="burger"><div class="hamburgerMenu-icon"></div></label>
+            <input class="d-none" type="checkbox" name="" id="burger">
+            <ul class="hamburgerMenu-line list-unstyle">
+                <li><a href="">活動辦法</a></li>
+                <li><a href="">全台海選</a></li>
+                <li><a href="">TOP12決賽</a></li>
+                <li><a href="">制服辣秘辛</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="wrapper">
+        <article class="publicity">
+            <img class="d-none-m d-block" src="image/p_title.png" alt="青春應援團！敲響熱血的鼓聲">
+            <img class="d-block-m d-none" src="image/p_title_m.png" alt="">
+            <div class="publicity-text">
+                <p>專屬高校生的青春印記</p>
+                <p>第三屆畢業季高校制服大賞熱血開跑！</p>
+                <p>網羅全台500所高制服進行強烈的廝殺票選</p>
+                <p>究竟是純白無敵白襯衫、萬年不敗的水手服</p>
+                <p>還是充滿萌味的連身款能奪下最終勝利呢？</p>
+                <p>在即將來臨的畢業季,為自己的學校制服再添一筆輝煌記事吧！</p>
+                <p>今年, ２０１６的制服大賞, 你投哪一家！</p>
+            </div>
+        </article>
+        <article class="main-block">
+            <div class="main-title">
+                活動時間
+            </div>
+            <ul class="list-unstyle main-content">
+                <li>
+                    <strong>第一階段－全台海選：</strong>2016/04/11－04/29，23:59止
+                </li>
+                <li>
+                    <strong>第二階段－TOP12決賽 (最佳人氣/最萌女校服/最鮮男校服)：</strong>2016/05/09－05/27，23:59止
+                </li>
+                <li>
+                    <strong>得獎公佈：</strong>2016/06/08 公布於同網頁，敬請密切注意！
+                </li>
+            </ul>
+            <img class="activityTime-img d-none-m" src="image/girl1.png" alt="girl1">
+        </article>
+        <article class="main-block">
+            <div class="main-title">
+                賽程說明
+            </div>
+            <div class="main-content">
+                <ul class="list-unstyle">
+                    <li>
+                        <strong>第一階段 - 全台海選:</strong>2016/04/11 - 23:59止
+                    </li>
+                    <li>
+                        <strong>第二階段 - TOP12決賽(最佳人氣/最萌女校服/最鮮男校服)：</strong>請進入SETN.com三立新聞網活動頁面，登入FB帳號即可投票。三個比賽項目每小時可各投六票，共18票。同項目不可重複投票。
+                    </li>
+                </ul>
+                <div class="illustrate-img d-block d-none-m">
+                    <img src="image/girl2.png" alt="girl2">
+                    <img src="image/way_p.jpg" alt="流程圖">
+                </div>
+                <img class="d-none d-block-m" src="image/way_mobile.jpg" alt="">
+            </div>
+        </article>
+        <article class="main-block">
+            <div class="main-title">
+                活動獎項
+            </div>
+            <ul class="list-unstyle main-content award">
+                <li>
+                    <strong>參加獎：</strong>凡參加投票者皆具備抽獎資個，共11名。
+                </li>
+                <li>
+                    <strong>神準獎：</strong>精準預測前12強之投票者，即有機會獲得ＯＯＯＯＯ，共XX名。
+                </li>
+                <li>
+                    <strong>應援獎：</strong>應援冠軍隊伍之投票者，即有機會獲得ＯＯＯＯＯ，共XX名。
+                </li>
+                <li>
+                    <strong>讚聲講：</strong>活動期間，分享活動訊息至FB皆具備抽獎資格，共XX名。
+                </li>
+            </ul>
+        </article>
+        <article class="main-block ">
+            <div class="main-title">
+                注意事項
+            </div>
+            <ul class="list-unstyle main-content precautions">
+                <li>
+                    <b>1.</b>
+                    <span>
+                        參賽者及參與投票網友所提供之個人資料，僅作為抽獎、寄發中獎通知及主辦單位寄發相關資訊使用。每人僅限一次中獎的機會，如發現重複中獎之情況或冒用他人姓名參加活動，將取消重複中獎資格。
+                    </span>
+                </li>
+                <li>
+                    <b>2.</b>
+                    <span>
+                        得獎將公布於活動網頁，中獎者將以Facebook登錄的Email進行mail通知，若在期限內未回覆正確聯絡資料者，視同放棄中獎資格。
+                    </span>
+                </li>
+                <li>
+                    <b>3.</b>
+                    <span>
+                        請確認您的得獎回傳通知所填寫的聯絡及地址資料，所有資料皆會保密，只作為獎品寄送依據。逾時未修改正確寄送地址、或因資料填寫不完整或不正確導致無法通知中獎時，將視為放棄領獎資格，獎項不另行補發。
+                    </span>
+                </li>
+                <li>
+                    <b>4.</b>
+                    <span>
+                        如有任何因電腦、網路、電話、技術或不可歸責於主辦單位之事由，而使寄予得獎人之獎品有遲延、遺失、錯誤、無法辨識或毀損之情況，主辦單位不負任何法律責任，參加者亦不得因此異議。
+                    </span>
+                </li>
+                <li>
+                    <b>5.</b>
+                    <span>
+                        活動之獎品以寄送的實物為準，獎品不得轉換、轉讓或折換現金。得獎者應依政府規定，獎品價值超過NT$20,000以上，依國稅局規定需繳交10%稅金。
+                    </span>
+                </li>
+                <li>
+                    <b>6.</b>
+                    <span>
+                        本活動為公開良性競賽性質，參賽者不得有舞弊、或惡意攻擊訐等情事。如有以下行為主辦單位有權取消參加資格，並保留相關法律追訴權利：使用不當行為或程式灌票或干擾活動進行、傳播不實謠言，造成本活動或本公司名譽受損、違反本活動辦法及政府法令之行為等。
+                    </span>
+                </li>
+                <li>
+                    <b>7.</b>
+                    <span>
+                        本活動主辦單位，對本活動網站有絕對的管理權，並就參賽者或投票者之資格及票數有審查之權利；若經審認資格不符或票數有不當、不妥情事者，本活動主辦單位有權取消得獎資格或逕行刪除參賽票數且不予事先告知。
+                    </span>
+                </li>
+                <li>
+                    <b>8.</b>
+                    <span>
+                        活動辦法載明於本活動網頁中，參加者於參加本活動之同時，即視為同意並遵守本活動相關規範及注意事項。如本活動因不可抗力之特殊原因無法執行時，主辦單位有權決定取消、終止、修改或暫停本活動。主辦單位亦保有修正、暫停或終止本活動之權利，恕不另行通知。
+                    </span>
+                </li>
+                <li>
+                    <b>9.</b>
+                    <span>
+                        此活動所使用之軟體或程式及網站上所有內容，均由主辦單位擁有其智慧財產權，任何人不得逕自使用、修改、重製、公開播送、改作、散布、發行、公開發表、進行還原工程、解編或反向組譯。若欲引用其內容，必須依法取得本活動主辦單位之正式書面授權。
+                    </span>
+                </li>
+                <strong>
+                    ※本活動並非由Facebook平台贊助、管理及開發，本活動乃由 SETN.com 三立新聞網/制服地圖主辦，並透過此活動網頁所提供的活動管理服務來舉辦、管理本活動，您在本活動所做的行為，與所提供的資料僅提供予主辦單位管理本活動使用。
+                </strong>
+            </ul>
+        </article>
+    </main>
+    <footer>
+        <div class="d-flex footer-unit d-block-m">
+            <ul class="list-unstyle d-flex d-block-m">
+                <li class="">
+                    <div class="footer-text">執行單位</div>
+                </li>
+                <li class="float-l">
+                    <img src="image/f_um.png" alt="UniformMap">
+                </li>
+                <li class="float-r">
+                    <img src="image/f_setn.png" alt="SETN">
+                </li>
+                <li class="float-l">
+                    <img src="image/f_st.png" alt="st">
+                </li>
+                <li>
+                    <div class="footer-text">特別感謝</div>
+                </li>
+                <li class="float-l">
+                    <img src="image/f_ga.png" alt="ga">
+                </li>
+                <li class="float-r">
+                    <img src="image/f_swanky.png" alt="swanky">
+                </li>
+                <li class="float-l">
+                    <img src="image/f_aken.png" alt="aken">
+                </li>
+            </ul>
+        </div>
+        <div class="copy">
+            <small>&copy; 2016 SANLIH E-TELEVISION</small>
+        </div>
+    </footer>
+</body>
+</html>
